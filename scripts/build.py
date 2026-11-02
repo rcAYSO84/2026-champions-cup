@@ -354,8 +354,8 @@ def build():
     (ROOT / "index.html").write_text(page(TITLE, f"""<h1>Tournament Schedule and Results</h1>
 <p class="lead">Nov. 2 through Nov. 12, 2026.  Choose how you want to view the games.</p>
 <div class="choices">
-<a class="choice" href="schedule.html"><b>All Games</b><span>Every division by date and time</span></a>
 <a class="choice" href="divisions.html"><b>By Division</b><span>Girls and boys, 9U through 14U</span></a>
+<a class="choice" href="schedule.html"><b>By Date</b><span>All games by date and time</span></a>
 <a class="choice" href="fields.html"><b>By Field</b><span>World Cup, Marty Russo, Gilleran, and Beebe</span></a>
 </div>""", updated, stamp))
 
