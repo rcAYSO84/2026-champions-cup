@@ -17,6 +17,7 @@ BAND, RULE, MUTED = colors.HexColor("#EEF1F7"), colors.HexColor("#D5DBE8"), colo
 GIRLS = ["GU09", "GU10", "GU12", "GU14"]
 BOYS = ["BU09", "BU10", "BU12", "BU14"]
 PDF_NAME = "2026-champions-cup-"
+FIELDS = ["World Cup SS1", "World Cup SS2", "Youth Athletic Park A", "Youth Athletic Park B", "Gilleran 1", "Beebe"]
 
 pdfmetrics.registerFont(TTFont("Body", "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"))
 pdfmetrics.registerFont(TTFont("Bold", "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"))
@@ -24,6 +25,14 @@ pdfmetrics.registerFont(TTFont("Bold", "/usr/share/fonts/truetype/liberation/Lib
 
 def div_name(d):
     return f"{'Girls' if d[0] == 'G' else 'Boys'} {int(d[2:])}U"
+
+
+def field_name(f):
+    return f"{f} (Marty Russo)" if f.startswith("Youth Athletic") else f
+
+
+def field_slug(f):
+    return "".join(ch if ch.isalnum() else "-" for ch in f.lower())
 
 
 def short_div(d):
@@ -173,6 +182,44 @@ def pdf_divisions(by_div, updated):
     c.save()
 
 
+def field_rows(gs):
+    return [[day(g), clock(g), short_div(g["div"]), g["round"], teams(g), result(g)] for g in gs]
+
+
+FIELD_COLS = cols_for([56, 52, 40, 84, 232, 76], ["Date", "Time", "Div.", "Game Type", "Teams", "Result"])
+
+
+def pdf_field(f, gs, updated):
+    w, h = letter
+    c = canvas.Canvas(str(PDF / f"{PDF_NAME}field-{field_slug(f)}.pdf"), pagesize=letter)
+    c.setTitle(f"{TITLE}: {f}")
+    y = header(c, field_name(f), updated, w, h - 28)
+    table(c, y - 6, field_rows(gs), FIELD_COLS, 10, 24)
+    footer(c, w)
+    c.save()
+
+
+def pdf_fields(by_field, order, updated):
+    w, h = letter
+    c = canvas.Canvas(str(PDF / f"{PDF_NAME}all-fields.pdf"), pagesize=letter)
+    c.setTitle(f"{TITLE}: All Fields")
+    wc = [f for f in order if f.startswith("World Cup")]
+    pages = (("World Cup", wc), ("Youth Athletic Park, Gilleran, and Beebe", [f for f in order if f not in wc]))
+    for label, fields in pages:
+        y = header(c, label, updated, w, h - 28)
+        rows = sum(len(by_field[f]) for f in fields)
+        row_h = min(19, (y - 40 - len(fields) * 26) / (rows + len(fields)))
+        for f in fields:
+            y -= 4
+            c.setFillColor(NAVY)
+            c.setFont("Bold", 11)
+            c.drawString(36, y - 12, field_name(f))
+            y = table(c, y - 17, field_rows(by_field[f]), FIELD_COLS, 8.6, row_h) - 2
+        footer(c, w)
+        c.showPage()
+    c.save()
+
+
 # ---------- HTML ----------
 CSS = """
 :root{--navy:#0B2250;--navy2:#16346F;--gold:#FDC917;--red:#C8102E;--ink:#17233D;--muted:#566079;
@@ -199,7 +246,7 @@ h3{font:700 21px/1.1 'Barlow Condensed',Arial,sans-serif;color:var(--navy);margi
 .btn:hover{background:#FFD845}
 .btn.sm{padding:5px 10px;font-size:14px}
 a:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
 .choice{display:block;background:var(--navy);color:#fff;border-radius:8px;padding:24px;text-decoration:none;border-bottom:5px solid var(--gold)}
 .choice:hover{background:var(--navy2)}
 .choice b{display:block;font:700 28px/1.1 'Barlow Condensed',Arial,sans-serif}
@@ -258,25 +305,27 @@ def page(title, body, updated, stamp):
 """
 
 
-def rows_html(gs, with_div):
+def rows_html(gs, with_div, with_field=True):
     out, last, alt = [], None, False
     for g in gs:
         if g["date"] != last:
             alt, last = (not alt if last is not None else False), g["date"]
         e = html.escape
         div = f'<td class="nw gt">{short_div(g["div"])}</td>' if with_div else ""
+        fld = f'<td data-l="Field">{e(g["field"])}</td>' if with_field else ""
         out.append(f'<tr{" class=alt" if alt else ""}><td class="nw when">{e(day(g))}</td>'
                    f'<td class="nw when">{e(clock(g))}</td>{div}<td class="gt">{e(g["round"])}</td>'
-                   f'<td class="tm">{e(teams(g))}</td><td data-l="Field">{e(g["field"])}</td>'
+                   f'<td class="tm">{e(teams(g))}</td>{fld}'
                    f'<td class="r">{e(result(g))}</td></tr>')
     return "\n".join(out)
 
 
-def table_html(gs, with_div):
+def table_html(gs, with_div, with_field=True):
     div = "<th>Div.</th>" if with_div else ""
+    fld = "<th>Park-Field</th>" if with_field else ""
     return (f'<div class="tw"><table><thead><tr><th>Date</th><th>Time</th>{div}<th>Game Type</th>'
-            f'<th>Teams</th><th>Park-Field</th><th>Result</th></tr></thead><tbody>\n'
-            f'{rows_html(gs, with_div)}\n</tbody></table></div>')
+            f'<th>Teams</th>{fld}<th>Result</th></tr></thead><tbody>\n'
+            f'{rows_html(gs, with_div, with_field)}\n</tbody></table></div>')
 
 
 def build():
@@ -288,7 +337,14 @@ def build():
     PDF.mkdir(exist_ok=True)
     by_div = {d: [g for g in games if g["div"] == d] for d in GIRLS + BOYS}
 
+    order = [f for f in FIELDS if any(g["field"] == f for g in games)]
+    order += sorted({g["field"] for g in games} - set(order))
+    by_field = {f: [g for g in games if g["field"] == f] for f in order}
+
     pdf_all(games, updated)
+    pdf_fields(by_field, order, updated)
+    for f, gs in by_field.items():
+        pdf_field(f, gs, updated)
     pdf_divisions(by_div, updated)
     for d, gs in by_div.items():
         pdf_div(d, gs, updated)
@@ -300,6 +356,7 @@ def build():
 <div class="choices">
 <a class="choice" href="schedule.html"><b>All Games</b><span>Every division by date and time</span></a>
 <a class="choice" href="divisions.html"><b>By Division</b><span>Girls and boys, 9U through 14U</span></a>
+<a class="choice" href="fields.html"><b>By Field</b><span>World Cup, Marty Russo, Gilleran, and Beebe</span></a>
 </div>""", updated, stamp))
 
     (ROOT / "schedule.html").write_text(page(f"All Games | {TITLE}", f"""<a class="back" href="index.html">&larr; Back to home</a>
@@ -322,6 +379,13 @@ def build():
 <div class="bar"><div><h1>Schedule by Division</h1>{jump("Girls", GIRLS)}{jump("Boys", BOYS)}</div>
 <a class="btn" href="pdf/{PDF_NAME}all-divisions.pdf?v={stamp}" download>Download All Divisions PDF</a></div>
 {section("Girls", GIRLS)}{section("Boys", BOYS)}""", updated, stamp))
+    fjump = '<div class="jump">' + "".join(f'<a href="#{field_slug(f)}">{html.escape(f)}</a>' for f in order) + "</div>"
+    fsec = "".join(f'''<div class="dv" id="{field_slug(f)}"><div class="dvh"><h3>{html.escape(field_name(f))}</h3>
+<a class="btn sm" href="pdf/{PDF_NAME}field-{field_slug(f)}.pdf?v={stamp}" download>PDF</a></div>{table_html(by_field[f], True, False)}</div>''' for f in order)
+    (ROOT / "fields.html").write_text(page(f"By Field | {TITLE}", f"""<a class="back" href="index.html">&larr; Back to home</a>
+<div class="bar"><div><h1>Schedule by Field</h1>{fjump}</div>
+<a class="btn" href="pdf/{PDF_NAME}all-fields.pdf?v={stamp}" download>Download All Fields PDF</a></div>
+{fsec}""", updated, stamp))
     print(len(games), "games built")
 
 
