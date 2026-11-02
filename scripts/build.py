@@ -300,7 +300,7 @@ def page(title, body, updated, stamp):
 <div class="brand"><div class="yr">2026 AYSO Region 84</div><div class="nm">Champions Cup Invitational</div></div></div></header>
 <main class="wrap">
 {body}
-<p class="foot">Updated {updated}.  Home team listed first.  &ldquo;Winner QF1&rdquo; means the winner of Quarterfinal 1 in that division.  Scores come from <a href="https://s11l84-26-fall.matchtrak.com/">MatchTrak</a>, which has any last-minute changes.</p>
+<p class="foot">Updated {updated}.  Home team listed first.  &ldquo;Winner QF1&rdquo; means the winner of Quarterfinal 1 in that division.  Scores come from <a href="https://s11l84-26-fall.matchtrak.com/11/main.nsf/schedule-regiongames-t-by-div?OpenView&amp;Start=1&amp;Count=200&amp;ExpandView&amp;RestrictToCategory=R84">MatchTrak</a>, which has any last-minute changes.</p>
 </main></body></html>
 """
 
