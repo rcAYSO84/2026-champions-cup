@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T07:33:00-08:00",
+ "updated": "2026-11-02T16:10:00-08:00",
  "games": [
   {
    "id": 30038,
@@ -114,9 +114,9 @@
    "home": "Ezzati",
    "away": "Casey",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
-   "note": ""
+   "home_score": 1,
+   "away_score": 0,
+   "note": "Forfeit"
   },
   {
    "id": 30055,
@@ -125,7 +125,7 @@
    "time": "17:30",
    "round": "Quarterfinal 1",
    "home": "Alduenda",
-   "away": "Ezzati/Casey winner",
+   "away": "Ezzati",
    "field": "World Cup SS2",
    "home_score": null,
    "away_score": null,
