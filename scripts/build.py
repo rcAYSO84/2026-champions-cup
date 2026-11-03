@@ -87,6 +87,11 @@ def teams_html(g):
     return f'{side("home")} <span class="lose">vs.</span> {side("away")}'
 
 
+def result_pdf(g):
+    r = result(g)
+    return r.replace(" (Forfeit)", " FF").replace("Forfeit", "FF").split(" (PK")[0] + (" PK" if "(PK" in r else "")
+
+
 def result_html(g):
     w, r = winner(g), result(g)
     return f"{g[w]} wins {r}" if w else r
@@ -163,7 +168,7 @@ def table(c, y, rows, cols, font, row_h, pad=4):
 def footer(c, w):
     c.setFillColor(MUTED)
     c.setFont("Body", 7.5)
-    c.drawString(36, 24, "“Winner QF1” means the winner of Quarterfinal 1 in that division.  Source: MatchTrak.")
+    c.drawString(36, 24, "“Winner QF1” means the winner of Quarterfinal 1 in that division.  FF means forfeit.  PK means decided by penalty kicks.  Source: MatchTrak.")
 
 
 def cols_for(widths, labels):
@@ -181,14 +186,14 @@ def pdf_all(games, updated):
     y = header(c, "All Games by Date and Time", updated, w, h - 28)
     cols = cols_for([50, 46, 34, 74, 193, 89, 54],
                     ["Date", "Time", "Div.", "Game Type", "Teams", "Park-Field", "Result"])
-    rows = [[day(g), clock(g), short_div(g["div"]), g["round"], team_cell(g), g["field"], result(g)] for g in games]
+    rows = [[day(g), clock(g), short_div(g["div"]), g["round"], team_cell(g), g["field"], result_pdf(g)] for g in games]
     table(c, y, rows, cols, 7.6, (y - 40) / (len(rows) + 1.1))
     footer(c, w)
     c.save()
 
 
 def div_rows(gs):
-    return [[day(g), clock(g), g["round"], team_cell(g), g["field"], result(g)] for g in gs]
+    return [[day(g), clock(g), g["round"], team_cell(g), g["field"], result_pdf(g)] for g in gs]
 
 
 DIV_COLS = cols_for([56, 52, 84, 196, 96, 56], ["Date", "Time", "Game Type", "Teams", "Park-Field", "Result"])
@@ -224,7 +229,7 @@ def pdf_divisions(by_div, updated):
 
 
 def field_rows(gs):
-    return [[day(g), clock(g), short_div(g["div"]), g["round"], team_cell(g), result(g)] for g in gs]
+    return [[day(g), clock(g), short_div(g["div"]), g["round"], team_cell(g), result_pdf(g)] for g in gs]
 
 
 FIELD_COLS = cols_for([56, 52, 40, 84, 232, 76], ["Date", "Time", "Div.", "Game Type", "Teams", "Result"])
