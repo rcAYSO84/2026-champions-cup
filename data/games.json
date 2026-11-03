@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T16:10:00-08:00",
+ "updated": "2026-11-02T21:48:45-08:00",
  "games": [
   {
    "id": 30038,
@@ -10,8 +10,8 @@
    "home": "Vega",
    "away": "Rathburn",
    "field": "World Cup SS2",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 0,
+   "away_score": 2,
    "note": ""
   },
   {
@@ -21,7 +21,7 @@
    "time": "17:30",
    "round": "Quarterfinal 1",
    "home": "Call",
-   "away": "Vega/Rathburn winner",
+   "away": "Rathburn",
    "field": "World Cup SS2",
    "home_score": null,
    "away_score": null,
@@ -491,8 +491,8 @@
    "home": "Matranga",
    "away": "Marx",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 6,
+   "away_score": 1,
    "note": ""
   },
   {
@@ -502,7 +502,7 @@
    "time": "18:45",
    "round": "Semifinal",
    "home": "McManamy",
-   "away": "Matranga/Marx winner",
+   "away": "Matranga",
    "field": "World Cup SS1",
    "home_score": null,
    "away_score": null,
@@ -543,8 +543,8 @@
    "home": "Bartczak",
    "away": "Cassuto",
    "field": "Beebe",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 1,
+   "away_score": 4,
    "note": ""
   },
   {
@@ -556,8 +556,8 @@
    "home": "Benavides Zacarias",
    "away": "Cohen",
    "field": "Beebe",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 0,
+   "away_score": 1,
    "note": ""
   },
   {
@@ -567,7 +567,7 @@
    "time": "17:30",
    "round": "Quarterfinal 2",
    "home": "Cappelletti",
-   "away": "Bartczak/Cassuto winner",
+   "away": "Cassuto",
    "field": "Beebe",
    "home_score": null,
    "away_score": null,
@@ -593,7 +593,7 @@
    "time": "19:00",
    "round": "Quarterfinal 1",
    "home": "Johnson",
-   "away": "Benavides Zacarias/Cohen winner",
+   "away": "Cohen",
    "field": "Beebe",
    "home_score": null,
    "away_score": null,
