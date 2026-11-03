@@ -1,0 +1,35 @@
+name: Update from MatchTrak
+on:
+  schedule:
+    - cron: "*/30 2-7 * 11 *"   # every 30 minutes, 6 PM to 11:30 PM PT
+    - cron: "0 15 * 11 *"       # 7:00 AM PT
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/sync.yml", "scripts/sync.py"]
+permissions:
+  contents: write
+concurrency:
+  group: sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get install -y -qq fonts-liberation
+      - run: pip install -q reportlab
+      - id: sync
+        run: python scripts/sync.py
+      - if: steps.sync.outputs.changed == 'true'
+        run: |
+          python scripts/build.py
+          git config user.name "Region 84 schedule update"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update from MatchTrak"
+          git pull --rebase origin main
+          git push origin main
