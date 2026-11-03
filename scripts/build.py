@@ -60,6 +60,38 @@ def result(g):
     return g["note"]
 
 
+def winner(g):
+    """Return 'home' or 'away'.  A tie on the score needs an explicit winner field."""
+    if g.get("winner") in ("home", "away"):
+        return g["winner"]
+    hs, aws = g["home_score"], g["away_score"]
+    if hs is None or aws is None or hs == aws:
+        return None
+    return "home" if hs > aws else "away"
+
+
+def team_cell(g):
+    w = winner(g)
+    if not w:
+        return teams(g)
+    return [(g["home"], "Bold" if w == "home" else "Body", NAVY if w == "home" else MUTED),
+            (" vs. ", "Body", MUTED),
+            (g["away"], "Bold" if w == "away" else "Body", NAVY if w == "away" else MUTED)]
+
+
+def teams_html(g):
+    w, e = winner(g), html.escape
+    if not w:
+        return e(teams(g))
+    side = lambda k: f'<span class="{"win" if w == k else "lose"}">{e(g[k])}</span>'
+    return f'{side("home")} <span class="lose">vs.</span> {side("away")}'
+
+
+def result_html(g):
+    w, r = winner(g), result(g)
+    return f"{g[w]} wins {r}" if w else r
+
+
 def sort_key(g):
     return (g["date"], g["time"], g["div"], g["field"])
 
@@ -110,6 +142,15 @@ def table(c, y, rows, cols, font, row_h, pad=4):
         c.setFillColor(NAVY)
         for i, (val, (_, x, w)) in enumerate(zip(r, cols)):
             face = "Bold" if i == len(r) - 1 and val else "Body"
+            if isinstance(val, list):
+                cx = x + pad
+                for text, part_face, color in val:
+                    c.setFont(part_face, font)
+                    c.setFillColor(color)
+                    c.drawString(cx, y - row_h + base, text)
+                    cx += pdfmetrics.stringWidth(text, part_face, font)
+                c.setFillColor(NAVY)
+                continue
             c.setFont(face, font)
             c.drawString(x + pad, y - row_h + base, fit(c, str(val), face, font, w - pad * 2))
         c.setStrokeColor(RULE)
@@ -140,14 +181,14 @@ def pdf_all(games, updated):
     y = header(c, "All Games by Date and Time", updated, w, h - 28)
     cols = cols_for([50, 46, 34, 74, 193, 89, 54],
                     ["Date", "Time", "Div.", "Game Type", "Teams", "Park-Field", "Result"])
-    rows = [[day(g), clock(g), short_div(g["div"]), g["round"], teams(g), g["field"], result(g)] for g in games]
+    rows = [[day(g), clock(g), short_div(g["div"]), g["round"], team_cell(g), g["field"], result(g)] for g in games]
     table(c, y, rows, cols, 7.6, (y - 40) / (len(rows) + 1.1))
     footer(c, w)
     c.save()
 
 
 def div_rows(gs):
-    return [[day(g), clock(g), g["round"], teams(g), g["field"], result(g)] for g in gs]
+    return [[day(g), clock(g), g["round"], team_cell(g), g["field"], result(g)] for g in gs]
 
 
 DIV_COLS = cols_for([56, 52, 84, 196, 96, 56], ["Date", "Time", "Game Type", "Teams", "Park-Field", "Result"])
@@ -183,7 +224,7 @@ def pdf_divisions(by_div, updated):
 
 
 def field_rows(gs):
-    return [[day(g), clock(g), short_div(g["div"]), g["round"], teams(g), result(g)] for g in gs]
+    return [[day(g), clock(g), short_div(g["div"]), g["round"], team_cell(g), result(g)] for g in gs]
 
 
 FIELD_COLS = cols_for([56, 52, 40, 84, 232, 76], ["Date", "Time", "Div.", "Game Type", "Teams", "Result"])
@@ -263,7 +304,10 @@ table{border-collapse:collapse;width:100%;font-size:15px;font-variant-numeric:ta
 th{background:var(--navy);color:#fff;text-align:left;font-weight:600;padding:8px 10px;white-space:nowrap}
 td{padding:7px 10px;border-top:1px solid var(--line);vertical-align:top}
 tr.alt td{background:var(--band)}
-td.r{font-weight:700;white-space:nowrap}
+td.r{font-weight:700;color:#14632E}
+.win{font-weight:700;color:var(--navy)}
+.win::after{content:" \\2713";color:#14632E}
+.lose{color:var(--muted);font-weight:400}
 td.nw{white-space:nowrap}
 .foot{margin-top:24px;color:var(--muted);font-size:14px}
 @media (max-width:720px){
@@ -280,8 +324,7 @@ td.tm{color:var(--ink);font-weight:700;font-size:16px;margin:2px 0}
 td.gt{color:var(--ink);font-size:14px}
 td.when{font-weight:600;color:var(--navy);font-size:15px}
 td.r:empty{display:none}
-td.r{color:var(--red);font-size:15px;margin-top:2px}
-td.r::before{content:"Result: "}
+td.r{font-size:15px;margin-top:2px}
 }
 """
 
@@ -315,8 +358,8 @@ def rows_html(gs, with_div, with_field=True):
         fld = f'<td data-l="Field">{e(g["field"])}</td>' if with_field else ""
         out.append(f'<tr{" class=alt" if alt else ""}><td class="nw when">{e(day(g))}</td>'
                    f'<td class="nw when">{e(clock(g))}</td>{div}<td class="gt">{e(g["round"])}</td>'
-                   f'<td class="tm">{e(teams(g))}</td>{fld}'
-                   f'<td class="r">{e(result(g))}</td></tr>')
+                   f'<td class="tm">{teams_html(g)}</td>{fld}'
+                   f'<td class="r">{e(result_html(g))}</td></tr>')
     return "\n".join(out)
 
 

@@ -40,7 +40,10 @@ table{border-collapse:collapse;width:100%;font-size:15px;font-variant-numeric:ta
 th{background:var(--navy);color:#fff;text-align:left;font-weight:600;padding:8px 10px;white-space:nowrap}
 td{padding:7px 10px;border-top:1px solid var(--line);vertical-align:top}
 tr.alt td{background:var(--band)}
-td.r{font-weight:700;white-space:nowrap}
+td.r{font-weight:700;color:#14632E}
+.win{font-weight:700;color:var(--navy)}
+.win::after{content:" \2713";color:#14632E}
+.lose{color:var(--muted);font-weight:400}
 td.nw{white-space:nowrap}
 .foot{margin-top:24px;color:var(--muted);font-size:14px}
 @media (max-width:720px){
@@ -57,6 +60,5 @@ td.tm{color:var(--ink);font-weight:700;font-size:16px;margin:2px 0}
 td.gt{color:var(--ink);font-size:14px}
 td.when{font-weight:600;color:var(--navy);font-size:15px}
 td.r:empty{display:none}
-td.r{color:var(--red);font-size:15px;margin-top:2px}
-td.r::before{content:"Result: "}
+td.r{font-size:15px;margin-top:2px}
 }
