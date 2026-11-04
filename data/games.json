@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T21:48:45-08:00",
+ "updated": "2026-11-03T23:47:39-08:00",
  "games": [
   {
    "id": 30038,
@@ -218,8 +218,8 @@
    "home": "Pregizer",
    "away": "Froehlich",
    "field": "Youth Athletic Park A",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 1,
+   "away_score": 2,
    "note": ""
   },
   {
@@ -231,8 +231,8 @@
    "home": "Ortiz",
    "away": "Ballon",
    "field": "Beebe",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 5,
+   "away_score": 4,
    "note": ""
   },
   {
@@ -244,8 +244,8 @@
    "home": "Matranga",
    "away": "De Angelis",
    "field": "Youth Athletic Park A",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 3,
+   "away_score": 5,
    "note": ""
   },
   {
@@ -255,7 +255,7 @@
    "time": "17:30",
    "round": "Quarterfinal 2",
    "home": "Henderson",
-   "away": "Matranga/De Angelis winner",
+   "away": "De Angelis",
    "field": "Beebe",
    "home_score": null,
    "away_score": null,
@@ -268,7 +268,7 @@
    "time": "17:30",
    "round": "Quarterfinal 3",
    "home": "Brissinger",
-   "away": "Ortiz/Ballon winner",
+   "away": "Ortiz",
    "field": "Youth Athletic Park A",
    "home_score": null,
    "away_score": null,
@@ -281,7 +281,7 @@
    "time": "19:00",
    "round": "Quarterfinal 1",
    "home": "Sweeney",
-   "away": "Pregizer/Froehlich winner",
+   "away": "Froehlich",
    "field": "Beebe",
    "home_score": null,
    "away_score": null,
@@ -413,8 +413,8 @@
    "home": "Tarpley",
    "away": "Fredericksen",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 2,
+   "away_score": 5,
    "note": ""
   },
   {
@@ -426,8 +426,8 @@
    "home": "Peck",
    "away": "Ford",
    "field": "World Cup SS2",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 5,
+   "away_score": 0,
    "note": ""
   },
   {
@@ -439,8 +439,8 @@
    "home": "Cabodi",
    "away": "Poladian-Melzer",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 4,
+   "away_score": 1,
    "note": ""
   },
   {
@@ -450,7 +450,7 @@
    "time": "17:30",
    "round": "Semifinal",
    "home": "Gonzalez",
-   "away": "Tarpley/Fredericksen winner",
+   "away": "Fredericksen",
    "field": "World Cup SS1",
    "home_score": null,
    "away_score": null,
@@ -462,8 +462,8 @@
    "date": "2026-11-09",
    "time": "17:30",
    "round": "Semifinal",
-   "home": "Peck/Ford winner",
-   "away": "Cabodi/Poladian-Melzer winner",
+   "home": "Peck",
+   "away": "Cabodi",
    "field": "World Cup SS2",
    "home_score": null,
    "away_score": null,
@@ -660,8 +660,8 @@
    "home": "Jones",
    "away": "Synnott",
    "field": "Gilleran 1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 2,
+   "away_score": 0,
    "note": ""
   },
   {
@@ -673,8 +673,8 @@
    "home": "Gardner",
    "away": "Vega",
    "field": "Gilleran 1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 2,
+   "away_score": 3,
    "note": ""
   },
   {
@@ -683,8 +683,8 @@
    "date": "2026-11-12",
    "time": "19:00",
    "round": "Final",
-   "home": "Semifinal winners",
-   "away": "",
+   "home": "Jones",
+   "away": "Vega",
    "field": "Gilleran 1",
    "home_score": null,
    "away_score": null,
