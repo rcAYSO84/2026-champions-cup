@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T23:47:39-08:00",
+ "updated": "2026-11-04T21:49:06-08:00",
  "games": [
   {
    "id": 30038,
@@ -127,8 +127,8 @@
    "home": "Alduenda",
    "away": "Ezzati",
    "field": "World Cup SS2",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 6,
+   "away_score": 1,
    "note": ""
   },
   {
@@ -153,8 +153,8 @@
    "home": "Henderson",
    "away": "Eckhardt",
    "field": "World Cup SS2",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 4,
+   "away_score": 3,
    "note": ""
   },
   {
@@ -166,8 +166,8 @@
    "home": "Herman",
    "away": "Rummel",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 2,
+   "away_score": 0,
    "note": ""
   },
   {
@@ -176,7 +176,7 @@
    "date": "2026-11-10",
    "time": "17:30",
    "round": "Semifinal",
-   "home": "Winner QF1",
+   "home": "Alduenda",
    "away": "Winner QF4",
    "field": "World Cup SS1",
    "home_score": null,
@@ -189,8 +189,8 @@
    "date": "2026-11-10",
    "time": "17:30",
    "round": "Semifinal",
-   "home": "Winner QF2",
-   "away": "Winner QF3",
+   "home": "Henderson",
+   "away": "Herman",
    "field": "World Cup SS2",
    "home_score": null,
    "away_score": null,
@@ -348,8 +348,8 @@
    "home": "Pregizer",
    "away": "Synnott",
    "field": "Gilleran 1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 4,
+   "away_score": 3,
    "note": ""
   },
   {
@@ -361,8 +361,8 @@
    "home": "Nicholson",
    "away": "Mueting",
    "field": "Gilleran 1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 2,
+   "away_score": 6,
    "note": ""
   },
   {
@@ -372,7 +372,7 @@
    "time": "17:30",
    "round": "Semifinal",
    "home": "Thresher",
-   "away": "Pregizer/Synnott winner",
+   "away": "Pregizer",
    "field": "Gilleran 1",
    "home_score": null,
    "away_score": null,
@@ -385,7 +385,7 @@
    "time": "19:00",
    "round": "Semifinal",
    "home": "DeAnda",
-   "away": "Nicholson/Mueting winner",
+   "away": "Mueting",
    "field": "Gilleran 1",
    "home_score": null,
    "away_score": null,
@@ -447,7 +447,7 @@
    "id": 30051,
    "div": "GU09",
    "date": "2026-11-09",
-   "time": "17:30",
+   "time": "17:15",
    "round": "Semifinal",
    "home": "Gonzalez",
    "away": "Fredericksen",
@@ -569,8 +569,8 @@
    "home": "Cappelletti",
    "away": "Cassuto",
    "field": "Beebe",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 1,
+   "away_score": 0,
    "note": ""
   },
   {
@@ -582,8 +582,8 @@
    "home": "Williams",
    "away": "Fredericksen",
    "field": "Youth Athletic Park A",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 1,
+   "away_score": 2,
    "note": ""
   },
   {
@@ -595,8 +595,8 @@
    "home": "Johnson",
    "away": "Cohen",
    "field": "Beebe",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 0,
+   "away_score": 1,
    "note": ""
   },
   {
@@ -608,8 +608,8 @@
    "home": "Deschenes",
    "away": "Thurlow",
    "field": "Youth Athletic Park A",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 1,
+   "away_score": 3,
    "note": ""
   },
   {
@@ -618,8 +618,8 @@
    "date": "2026-11-09",
    "time": "19:00",
    "round": "Semifinal",
-   "home": "Winner QF1",
-   "away": "Winner QF4",
+   "home": "Cohen",
+   "away": "Thurlow",
    "field": "Youth Athletic Park A",
    "home_score": null,
    "away_score": null,
@@ -631,8 +631,8 @@
    "date": "2026-11-09",
    "time": "19:00",
    "round": "Semifinal",
-   "home": "Winner QF2",
-   "away": "Winner QF3",
+   "home": "Cappelletti",
+   "away": "Fredericksen",
    "field": "Youth Athletic Park B",
    "home_score": null,
    "away_score": null,
