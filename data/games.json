@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T21:49:06-08:00",
+ "updated": "2026-11-05T07:17:43-08:00",
  "games": [
   {
    "id": 30038,
@@ -140,8 +140,8 @@
    "home": "Zaccuri",
    "away": "Amaro",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 2,
+   "away_score": 1,
    "note": ""
   },
   {
@@ -177,7 +177,7 @@
    "time": "17:30",
    "round": "Semifinal",
    "home": "Alduenda",
-   "away": "Winner QF4",
+   "away": "Zaccuri",
    "field": "World Cup SS1",
    "home_score": null,
    "away_score": null,
