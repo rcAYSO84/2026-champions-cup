@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T22:32:15-08:00",
+ "updated": "2026-11-10T21:48:52-08:00",
  "games": [
   {
    "id": 30038,
@@ -179,8 +179,8 @@
    "home": "Alduenda",
    "away": "Zaccuri",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 4,
+   "away_score": 1,
    "note": ""
   },
   {
@@ -192,8 +192,8 @@
    "home": "Henderson",
    "away": "Herman",
    "field": "World Cup SS2",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 6,
+   "away_score": 5,
    "note": ""
   },
   {
@@ -202,8 +202,8 @@
    "date": "2026-11-12",
    "time": "17:30",
    "round": "Final",
-   "home": "Semifinal winners",
-   "away": "",
+   "home": "Alduenda",
+   "away": "Henderson",
    "field": "World Cup SS1",
    "home_score": null,
    "away_score": null,
@@ -387,8 +387,8 @@
    "home": "DeAnda",
    "away": "Mueting",
    "field": "Gilleran 1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 4,
+   "away_score": 1,
    "note": ""
   },
   {
