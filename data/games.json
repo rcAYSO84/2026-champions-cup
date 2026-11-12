@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T21:48:52-08:00",
+ "updated": "2026-11-12T09:43:51-08:00",
  "games": [
   {
    "id": 30038,
@@ -101,8 +101,8 @@
    "home": "Call",
    "away": "Low",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 3,
+   "away_score": 6,
    "note": ""
   },
   {
@@ -335,8 +335,8 @@
    "home": "Sweeney",
    "away": "Ortiz",
    "field": "Beebe",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 7,
+   "away_score": 3,
    "note": ""
   },
   {
@@ -374,8 +374,8 @@
    "home": "Thresher",
    "away": "Pregizer",
    "field": "Gilleran 1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 4,
+   "away_score": 2,
    "note": ""
   },
   {
@@ -397,8 +397,8 @@
    "date": "2026-11-12",
    "time": "17:30",
    "round": "Final",
-   "home": "Semifinal winners",
-   "away": "",
+   "home": "DeAnda",
+   "away": "Thresher",
    "field": "Gilleran 1",
    "home_score": null,
    "away_score": null,
@@ -478,8 +478,8 @@
    "home": "Gonzalez",
    "away": "Peck",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 3,
+   "away_score": 2,
    "note": ""
   },
   {
@@ -504,8 +504,8 @@
    "home": "McManamy",
    "away": "Matranga",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 3,
+   "away_score": 1,
    "note": ""
   },
   {
@@ -517,8 +517,8 @@
    "home": "Cornish",
    "away": "Cohen",
    "field": "World Cup SS2",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 5,
+   "away_score": 4,
    "note": ""
   },
   {
@@ -527,8 +527,8 @@
    "date": "2026-11-12",
    "time": "18:45",
    "round": "Final",
-   "home": "Semifinal winners",
-   "away": "",
+   "home": "McManamy",
+   "away": "Cornish",
    "field": "World Cup SS1",
    "home_score": null,
    "away_score": null,
@@ -647,8 +647,8 @@
    "home": "Thurlow",
    "away": "Cappelletti",
    "field": "Beebe",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 3,
+   "away_score": 1,
    "note": ""
   },
   {
