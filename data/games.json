@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T21:47:46-08:00",
+ "updated": "2026-11-13T08:33:36-08:00",
  "games": [
   {
    "id": 30038,
@@ -530,8 +530,8 @@
    "home": "McManamy",
    "away": "Cornish",
    "field": "World Cup SS1",
-   "home_score": null,
-   "away_score": null,
+   "home_score": 4,
+   "away_score": 0,
    "note": ""
   },
   {
